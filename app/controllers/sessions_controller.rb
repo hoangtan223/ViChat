@@ -9,10 +9,12 @@ class SessionsController < ApplicationController
   			flash[:success] = "Logged in!"
   			redirect_to root_path
   		else
-  			redirect_to 'new', flash[:error] = "Wrong password!"
+  			flash[:error] = "Wrong password!"
+  			redirect_to 'new'
   		end
   	else
-  		redirect_to 'new', flash[:error] = "Cannot find user!"
+  		flash[:error] = "Cannot find user!"
+  		redirect_to 'new'
   	end
   end
 
