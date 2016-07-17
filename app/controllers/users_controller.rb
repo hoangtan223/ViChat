@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
 
 	def index
-		@users = User.all
+		@users = User.all_except(current_user)
+	end
+
+	def show 
+		@users = User.all_except(current_user)
+		render 'index'
 	end
 
 	def new

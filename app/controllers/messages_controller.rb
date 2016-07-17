@@ -1,7 +1,7 @@
 class MessagesController < ApplicationController
   def new
   	@message = Message.new
-  	@users = User.all_except current_user
+  	@users = current_user.friends
   end
 
   def create
@@ -11,7 +11,7 @@ class MessagesController < ApplicationController
   		redirect_to root_path
   	else
   		flash[:error] = @message.errors.full_messages.to_sentence
-  		@users = User.all_except current_user
+  		@users = current_user.friends
   		render 'new'
   	end
   end

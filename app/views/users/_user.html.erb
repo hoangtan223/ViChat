@@ -3,7 +3,7 @@
     <%= image_tag user.gravatar %>
     <div class="card-block">
       <h4 class="card-title"><%= user.try(:name) %></h4>
-      <a href="#" class="btn btn-primary">Button</a>
+      <%= relationship_button(user) %>
     </div>
   </div>
 </div>
