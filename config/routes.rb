@@ -18,5 +18,11 @@ Rails.application.routes.draw do
   resources :relationships
 
   post 'accept_request' => 'relationships#accept_request'
+
+  get 'sent_messages' => 'messages#sent_messages'
+
+  get 'inbox' => 'messages#received_messages'
+
+  post 'block_user' => 'relationships#block_user'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

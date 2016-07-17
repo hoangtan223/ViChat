@@ -16,6 +16,20 @@ class MessagesController < ApplicationController
   	end
   end
 
+  def sent_messages
+  	@messages = current_user.sent_messages
+  end
+
+  def received_messages
+  	@messages = current_user.received_messages
+  end
+
+  def show 
+  	@message = Message.find(params[:id])
+  	@is_read = @message.read?
+  	@message.mark_as_read!
+  end
+
   private
 
   def message_params

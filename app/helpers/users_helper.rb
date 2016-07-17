@@ -13,7 +13,7 @@ module UsersHelper
 	def relationship_button(user)
 		case current_user.get_relationship user
 		when "friend"
-			content_tag(:div, "Friend", class: 'btn btn-secondary')
+			button_to 'Block', block_user_path, params: {target_id: user.id}
 		when "pending"
 			content_tag(:div, "Request sent", class: 'btn btn-secondary')
 		when "block"

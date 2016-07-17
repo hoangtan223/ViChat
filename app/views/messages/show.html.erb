@@ -1,0 +1,8 @@
+<% if @is_read %>
+	<h1>Your message has been read! </h1>
+<% else %>
+	<h2 class="message-header">From: <%= "#{@message.sender.name} - #{@message.sender.email}"%></h2>
+	<div class="message-body">
+		<%= @message.body %>
+	</div>
+<% end %>

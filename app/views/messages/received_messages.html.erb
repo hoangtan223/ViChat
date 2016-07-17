@@ -1,0 +1,17 @@
+<h1>Inbox</h1>
+<ul class="list-group">
+<% if !@messages.blank? %>
+	<% @messages.each do |message| %>
+		<li class="list-group-item">
+			<%= link_to "Message sent from #{message.sender.name} at #{message.created_at.strftime("%B %d at %I:%M %p")}", message_path(message.id)%>
+			<span class="pull-xs-right">
+			<% if message.read? %>
+			read at <%= time_ago_in_words message.read_at %> ago
+			<% else %>
+			unread
+			<% end %>
+			</span>
+		</li>
+	<% end %>
+	<% end %>
+</ul>
