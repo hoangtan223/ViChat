@@ -1,7 +1,10 @@
 class MessagesController < ApplicationController
   def new
   	@message = Message.new
-  	@users = current_user.friends
+  	unless @users = current_user.friends
+		flash[:notice] = "You must have friends to send message"
+		redirect_to users_path
+	end
   end
 
   def create
@@ -26,7 +29,8 @@ class MessagesController < ApplicationController
 
   def show 
   	@message = Message.find(params[:id])
-  	@is_read = @message.read?
+  	
+  	 = @message.read?
   	@message.mark_as_read!
   end
 
