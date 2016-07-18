@@ -2,8 +2,7 @@ class MessagesController < ApplicationController
   def new
   	@message = Message.new
   	unless @users = current_user.friends
-		flash[:notice] = "You must have friends to send message"
-		redirect_to users_path
+		flash[:notice] = "You must have friends before send out message"
 	end
   end
 
@@ -29,8 +28,11 @@ class MessagesController < ApplicationController
 
   def show 
   	@message = Message.find(params[:id])
-  	
-  	 = @message.read?
+  	unless @message.recepient_id = current_user.id
+  		flash[:error] = "You are not allow to view this message"
+  		redirect_to users_path
+  	end
+  	@is_read = @message.read?
   	@message.mark_as_read!
   end
 
